@@ -75,19 +75,22 @@ class USStockDatabase:
             return
 
         try:
-            with open(self.csv_file, "r", encoding="utf-8") as f:
+            # Use utf-8-sig to handle BOM (byte order mark) in CSV files
+            with open(self.csv_file, "r", encoding="utf-8-sig") as f:
                 reader = csv.DictReader(f)
 
-                # Find the ticker column (case-insensitive)
+                # Find the ticker column (case-insensitive, strip whitespace)
                 fieldnames = reader.fieldnames or []
                 tic_column = None
                 for col in fieldnames:
-                    if col.lower() == "tic" or col.lower() == "ticker":
+                    # Strip whitespace and compare case-insensitively
+                    col_clean = col.strip().lower()
+                    if col_clean == "tic" or col_clean == "ticker":
                         tic_column = col
                         break
 
                 if not tic_column:
-                    print(f"Error: CSV file must have a 'tic' or 'ticker' column.")
+                    print(f"Error: CSV file must have a 'TIC' or 'ticker' column.")
                     print(f"Found columns: {fieldnames}")
                     return
 
