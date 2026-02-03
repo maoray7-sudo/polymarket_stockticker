@@ -20,8 +20,8 @@ POLYMARKET_CLOB_API_URL = "https://clob.polymarket.com"
 # Rate limiting
 API_RATE_LIMIT_DELAY = 0.5  # seconds between API calls
 
-# Ticker CSV file (place your CSV with 'tic' column here)
-TICKER_CSV_FILE = DATA_DIR / "tickers.csv"
+# Ticker CSV file (CSV with 'TIC' column containing stock tickers)
+TICKER_CSV_FILE = DATA_DIR / "tic_list.csv"
 
 # Ensure data directory exists
 DATA_DIR.mkdir(exist_ok=True)

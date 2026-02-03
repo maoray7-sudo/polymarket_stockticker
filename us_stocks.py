@@ -52,15 +52,15 @@ class USStockDatabase:
     """
 
     # Default CSV file path - user should place their CSV here
-    DEFAULT_CSV_FILE = DATA_DIR / "tickers.csv"
+    DEFAULT_CSV_FILE = DATA_DIR / "tic_list.csv"
 
     def __init__(self, csv_file: Optional[Path] = None):
         """
         Initialize the stock database.
 
         Args:
-            csv_file: Path to CSV file with 'tic' column.
-                      If None, uses default path: data/tickers.csv
+            csv_file: Path to CSV file with 'TIC' column.
+                      If None, uses default path: data/tic_list.csv
         """
         self.csv_file = csv_file or self.DEFAULT_CSV_FILE
         self.stocks: Dict[str, Stock] = {}
@@ -70,7 +70,7 @@ class USStockDatabase:
         """Load stock tickers from CSV file."""
         if not self.csv_file.exists():
             print(f"Warning: CSV file not found at {self.csv_file}")
-            print("Please place your tickers CSV file with 'tic' column at this location.")
+            print("Please place your tic_list.csv file with 'TIC' column at this location.")
             print("Or specify a custom path when creating the database.")
             return
 
