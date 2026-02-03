@@ -43,16 +43,16 @@ class FirstMentionTracker:
 
     def scan_market(self, market: PolymarketMarket) -> List[Tuple[Stock, str]]:
         """
-        Scan a single market for stock mentions.
+        Scan a single market for stock mentions in the question only.
 
         Args:
             market: The market to scan
 
         Returns:
-            List of (Stock, matched_text) tuples found in the market
+            List of (Stock, matched_text) tuples found in the market question
         """
-        text = market.get_searchable_text()
-        return self.stock_db.find_mentions(text)
+        # Only search in the question field, not description or other fields
+        return self.stock_db.find_mentions(market.question)
 
     def process_market(
         self,
